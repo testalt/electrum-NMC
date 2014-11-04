@@ -1,4 +1,4 @@
-from electrum.util import print_error
+from electrum_NMC.util import print_error
 
 import httplib, urllib
 import socket
@@ -18,11 +18,11 @@ import PyQt4.QtGui as QtGui
 import aes
 import base64
 
-import electrum
-from electrum.plugins import BasePlugin, hook
-from electrum.i18n import _
+import electrum_NMC
+from electrum_NMC.plugins import BasePlugin, hook
+from electrum_NMC.i18n import _
 
-from electrum_gui.qt import HelpButton, EnterButton
+from electrum_NMC_gui.qt import HelpButton, EnterButton
 
 class Plugin(BasePlugin):
 

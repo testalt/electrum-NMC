@@ -1,10 +1,10 @@
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum.wallet import WalletStorage, Wallet
-from electrum.util import format_satoshis, set_verbosity
-from electrum.bitcoin import is_valid
-from electrum.network import filter_protocol
+from electrum_NMC.wallet import WalletStorage, Wallet
+from electrum_NMC.util import format_satoshis, set_verbosity
+from electrum_NMC.bitcoin import is_valid
+from electrum_NMC.network import filter_protocol
 import sys, getpass, datetime
 
 # minimal fdisk like gui for console usage
@@ -17,7 +17,7 @@ class ElectrumGui:
         self.config = config
         storage = WalletStorage(config)
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum create'"
+            print "Wallet not found. try 'electrum-NMC create'"
             exit()
 
         self.done = 0
@@ -218,12 +218,12 @@ class ElectrumGui:
             print(_('Error'))
 
     def network_dialog(self):
-        print("use 'electrum setconfig server/proxy' to change your network settings")
+        print("use 'electrum-NMC setconfig server/proxy' to change your network settings")
         return True
 
 
     def settings_dialog(self):
-        print("use 'electrum setconfig' to change your settings")
+        print("use 'electrum-NMC setconfig' to change your settings")
         return True
 
     def password_dialog(self):

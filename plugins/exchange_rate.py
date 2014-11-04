@@ -9,10 +9,10 @@ import threading
 import time
 import re
 from decimal import Decimal
-from electrum.plugins import BasePlugin, hook
-from electrum.i18n import _
-from electrum_gui.qt.util import *
-from electrum_gui.qt.amountedit import AmountEdit
+from electrum_NMC.plugins import BasePlugin, hook
+from electrum_NMC.i18n import _
+from electrum_NMC_gui.qt.util import *
+from electrum_NMC_gui.qt.amountedit import AmountEdit
 
 
 EXCHANGES = ["BitcoinAverage",
@@ -52,7 +52,7 @@ class Exchanger(threading.Thread):
     def get_json(self, site, get_string):
         try:
             connection = httplib.HTTPSConnection(site)
-            connection.request("GET", get_string, headers={"User-Agent":"Electrum"})
+            connection.request("GET", get_string, headers={"User-Agent":"Electrum-NMC"})
         except Exception:
             raise
         resp = connection.getresponse()

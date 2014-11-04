@@ -1,6 +1,6 @@
-import time, electrum, Queue
-from electrum import Interface, SimpleConfig
-from electrum.network import filter_protocol, parse_servers
+import time, electrum_NMC, Queue
+from electrum_NMC import Interface, SimpleConfig
+from electrum_NMC.network import filter_protocol, parse_servers
 
 # electrum.util.set_verbosity(1)
 

@@ -2,12 +2,12 @@
 
 import sys
 import time
-import electrum
+import electrum_NMC
 
 try:
     addr = sys.argv[1]
 except Exception:
-    print "usage: watch_address <bitcoin_address>"
+    print "usage: watch_address <namecoin_address>"
     sys.exit(1)
 
 # start network

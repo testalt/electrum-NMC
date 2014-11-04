@@ -65,10 +65,10 @@ verifymessage_syntax = 'verifymessage <address> <signature> <message>\nIf you wa
 #                                                            requires_password
 register_command('contacts',             0, 0, False, True,  False, 'Show your list of contacts')
 register_command('create',               0, 0, False, True,  False, 'Create a new wallet')
-register_command('createmultisig',       2, 2, False, True,  False, 'similar to bitcoind\'s command')
-register_command('createrawtransaction', 2, 2, False, True,  False, 'similar to bitcoind\'s command')
+register_command('createmultisig',       2, 2, False, True,  False, 'similar to namecoin\'s command')
+register_command('createrawtransaction', 2, 2, False, True,  False, 'similar to namecoin\'s command')
 register_command('deseed',               0, 0, False, True,  False, 'Remove seed from wallet, creating a seedless, watching-only wallet.')
-register_command('decoderawtransaction', 1, 1, False, False, False, 'similar to bitcoind\'s command')
+register_command('decoderawtransaction', 1, 1, False, False, False, 'similar to namecoind\'s command')
 register_command('getprivatekeys',       1, 1, False, True,  True,  'Get the private keys of a given address', 'getprivatekeys <bitcoin address>')
 register_command('dumpprivkeys',         0, 0, False, True,  True,  'Dump all private keys in your wallet')
 register_command('freeze',               1, 1, False, True,  True,  'Freeze the funds at one of your wallet\'s addresses', 'freeze <address>')
@@ -78,7 +78,7 @@ register_command('getversion',           0, 0, False, False, False, 'Return the 
 register_command('getaddressbalance',    1, 1, True,  False, False, 'Return the balance of an address', 'getaddressbalance <address>')
 register_command('getaddresshistory',    1, 1, True,  False, False, 'Return the transaction history of a wallet address', 'getaddresshistory <address>')
 register_command('getconfig',            1, 1, False, False, False, 'Return a configuration variable', 'getconfig <name>')
-register_command('getpubkeys',           1, 1, False, True,  False, 'Return the public keys for a wallet address', 'getpubkeys <bitcoin address>')
+register_command('getpubkeys',           1, 1, False, True,  False, 'Return the public keys for a wallet address', 'getpubkeys <namecoin address>')
 register_command('getrawtransaction',    1, 1, True,  False, False, 'Retrieve a transaction', 'getrawtransaction <txhash>')
 register_command('getseed',              0, 0, False, True,  True,  'Print the generation seed of your wallet.')
 register_command('getmpk',               0, 0, False, True,  False, 'Return your wallet\'s master public key', 'getmpk')
@@ -245,8 +245,8 @@ class Commands:
         return self.network.get_servers()
 
     def getversion(self):
-        import electrum  # Needs to stay here to prevent ciruclar imports
-        return electrum.ELECTRUM_VERSION
+        import electrum_NMC  # Needs to stay here to prevent ciruclar imports
+        return electrum_NMC.ELECTRUM_VERSION
 
     def getmpk(self):
         return self.wallet.get_master_public_keys()
@@ -276,16 +276,16 @@ class Commands:
     def _mktx(self, outputs, fee = None, change_addr = None, domain = None):
         for to_address, amount in outputs:
             if not is_valid(to_address):
-                raise Exception("Invalid Bitcoin address", to_address)
+                raise Exception("Invalid Namecoin address", to_address)
 
         if change_addr:
             if not is_valid(change_addr):
-                raise Exception("Invalid Bitcoin address", change_addr)
+                raise Exception("Invalid Namecoin address", change_addr)
 
         if domain is not None:
             for addr in domain:
                 if not is_valid(addr):
-                    raise Exception("invalid Bitcoin address", addr)
+                    raise Exception("invalid Namecoin address", addr)
 
                 if not self.wallet.is_mine(addr):
                     raise Exception("address not in wallet", addr)
